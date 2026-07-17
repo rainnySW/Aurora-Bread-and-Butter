@@ -15,7 +15,7 @@ export default function CartPage() {
     const [editingItem, setEditingItem] = useState<CartItem | null>(null);
     const [sweetness, setSweetness] = useState('sw100');
     const [sweetnessSlider, setSweetnessSlider] = useState(3);
-    const [isDragging, setIsDragging] = useState(false);
+    const [, setIsDragging] = useState(false);
     const animationRef = useRef<number>();
     const [ice, setIce] = useState('ic2');
     const [iceCubes, setIceCubes] = useState(0);

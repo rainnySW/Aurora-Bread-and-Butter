@@ -13,7 +13,7 @@ const categories = [
 ];
 
 export default function MenuPage() {
-    const { lang, langCharLimit, addToCart, cart, setTab, hasAddedFirstItem } = useStore();
+    const { lang, langCharLimit, addToCart, cart, setTab } = useStore();
     const [filter, setFilter] = useState('all');
     const [search, setSearch] = useState('');
     const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
@@ -21,7 +21,7 @@ export default function MenuPage() {
     // Modal state
     const [sweetness, setSweetness] = useState('sw100');
     const [sweetnessSlider, setSweetnessSlider] = useState(3);
-    const [isDragging, setIsDragging] = useState(false);
+    const [, setIsDragging] = useState(false);
     const animationRef = useRef<number>();
     const [ice, setIce] = useState('ic2');
     const [iceCubes, setIceCubes] = useState(0);
