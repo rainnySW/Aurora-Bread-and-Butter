@@ -5,6 +5,7 @@ export type MenuItem = {
   price: number;
   imgColor: string;
   name: { th: string; en: string };
+  imgSrc?: string;
 };
 
 export const menuData: MenuItem[] = [
