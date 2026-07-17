@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useStore, t } from '../store/useStore';
 import { menuData } from '../data/menuData';
-import { Coffee, Search } from 'lucide-react'; // Placeholder icons instead of Phosphor for now since we have lucide
+import { Search } from 'lucide-react';
 
 export default function HomePage() {
   const { lang, langCharLimit, setTab } = useStore();
@@ -59,14 +59,16 @@ export default function HomePage() {
         <p className="text-sm text-pastel-brown-500 mb-2 font-medium tracking-wider uppercase">
           {t(lang, 'recommend', langCharLimit)}
         </p>
-        <div className="glass rounded-3xl p-6 shadow-sm group-hover:shadow-md transition-all duration-300 flex flex-col items-center gap-4 relative overflow-hidden">
+        <div className="glass rounded-3xl p-6 shadow-sm group-hover:shadow-md transition-all duration-300 flex flex-col items-center gap-4 relative overflow-hidden min-h-[260px] justify-center">
           <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent dark:from-white/5 z-0"></div>
-          <div className={`w-32 h-32 rounded-full ${currentRec.imgColor} shadow-inner flex items-center justify-center text-white/80 z-10 transform group-hover:scale-105 transition-transform duration-500 overflow-hidden`}>
-            <img src={`/images/${currentRec.id}.jpg`} alt={currentRec.name.en} className="w-full h-full object-cover" />
-          </div>
-          <div className="z-10">
-            <h3 className="text-xl font-semibold dark:text-white">{currentRec.name[lang]}</h3>
-            <p className="text-pastel-green-500 font-bold mt-1">฿{currentRec.price}</p>
+          <div key={currentRec.id} className="flex flex-col items-center gap-4 animate-fade-in z-10 w-full">
+            <div className={`w-32 h-32 rounded-full ${currentRec.imgColor} shadow-xl shadow-black/20 dark:shadow-black/40 flex items-center justify-center text-white/80 transform group-hover:scale-105 transition-transform duration-500 overflow-hidden ring-4 ring-white/50 dark:ring-white/10`}>
+              <img src={`/images/${currentRec.id}.jpg`} alt={currentRec.name.en} className="w-full h-full object-cover" />
+            </div>
+            <div className="text-center mt-2">
+              <h3 className="text-xl font-semibold dark:text-white">{currentRec.name[lang as 'th'|'en']}</h3>
+              <p className="text-pastel-green-500 font-bold mt-1 tracking-wide">฿{currentRec.price}</p>
+            </div>
           </div>
         </div>
       </div>
