@@ -62,11 +62,7 @@ export default function HomePage() {
         <div className="glass rounded-3xl p-6 shadow-sm group-hover:shadow-md transition-all duration-300 flex flex-col items-center gap-4 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent dark:from-white/5 z-0"></div>
           <div className={`w-32 h-32 rounded-full ${currentRec.imgColor} shadow-inner flex items-center justify-center text-white/80 z-10 transform group-hover:scale-105 transition-transform duration-500 overflow-hidden`}>
-            {currentRec.imgSrc ? (
-                <img src={currentRec.imgSrc} alt={currentRec.name.en} className="w-full h-full object-cover" />
-            ) : (
-                <Coffee size={48} />
-            )}
+            <img src={`/images/${currentRec.id}.jpg`} alt={currentRec.name.en} className="w-full h-full object-cover" />
           </div>
           <div className="z-10">
             <h3 className="text-xl font-semibold dark:text-white">{currentRec.name[lang]}</h3>
