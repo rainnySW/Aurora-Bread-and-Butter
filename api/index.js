@@ -122,6 +122,10 @@ app.put('/api/preferences/:id', async (req, res) => {
     }
 });
 
-app.listen(PORT, '127.0.0.1', () => {
-    console.log(`🚀 Server running on http://127.0.0.1:${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
+    app.listen(PORT, '127.0.0.1', () => {
+        console.log(`🚀 Server running on http://127.0.0.1:${PORT}`);
+    });
+}
+
+export default app;

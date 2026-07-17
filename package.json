@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"vite\" \"node server.js\"",
-    "dev:all": "concurrently \"npm run dev\" \"node server.js\"",
+    "dev": "concurrently \"vite\" \"node api/index.js\"",
+    "dev:all": "concurrently \"npm run dev\" \"node api/index.js\"",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
