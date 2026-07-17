@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar for horizontal scrolling containers */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Gradient Text Utility */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+  }
+
+  /* Glassmorphism utils */
+  .glass {
+    background: rgba(208, 248, 206, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  .dark .glass {
+    background: rgba(36, 41, 36, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
