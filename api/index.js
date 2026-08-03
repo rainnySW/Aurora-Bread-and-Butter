@@ -14,10 +14,35 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI)
-    .then(() => console.log('✅ Connected to MongoDB Atlas'))
-    .catch(err => console.error('❌ MongoDB connection error:', err));
+// Serverless-friendly MongoDB Connection
+let isConnected = false;
+
+const connectDB = async () => {
+    if (isConnected) {
+        return;
+    }
+    if (mongoose.connection.readyState === 1) {
+        isConnected = true;
+        return;
+    }
+    
+    try {
+        await mongoose.connect(process.env.MONGODB_URI, {
+            serverSelectionTimeoutMS: 5000,
+            socketTimeoutMS: 45000,
+        });
+        isConnected = true;
+        console.log('✅ Connected to MongoDB Atlas');
+    } catch (err) {
+        console.error('❌ MongoDB connection error:', err);
+    }
+};
+
+// Middleware to ensure DB connection on every request
+app.use(async (req, res, next) => {
+    await connectDB();
+    next();
+});
 
 // --- API Routes ---
 
