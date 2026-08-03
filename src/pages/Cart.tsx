@@ -390,8 +390,8 @@ export default function CartPage() {
                                         <X size={20} />
                                     </button>
                                 </div>
-                                <div className="w-48 h-48 mx-auto bg-gray-100 dark:bg-white rounded-xl flex items-center justify-center border-4 border-pastel-green-500 mb-6">
-                                    <QrCode size={120} className="text-gray-800" />
+                                <div className="w-48 h-48 mx-auto bg-gray-100 dark:bg-white rounded-xl flex items-center justify-center border-4 border-pastel-green-500 mb-6 overflow-hidden p-2">
+                                    <img src="/payment_qrcode.png" alt="Payment QR Code" className="w-full h-full object-contain" />
                                 </div>
                                 <p className="text-lg font-bold text-pastel-green-500 mb-6">฿{total}</p>
                                 <button onClick={handleProcessOrder} className="w-full py-4 bg-pastel-green-500 text-white rounded-xl font-bold hover:bg-pastel-green-600 transition-colors">

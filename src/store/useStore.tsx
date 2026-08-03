@@ -116,12 +116,12 @@ export const translations = {
         orderSuccess: 'สั่งซื้อสำเร็จ!',
         queueWait: 'กรุณารอสักครู่ คิวของคุณคือ',
         queues: 'คิว',
-        simulatePayment: 'จำลองการชำระเงินเสร็จสิ้น',
-        scanQrCode: 'สแกนคิวอาร์โค้ดเพื่อชำระเงิน',
+        simulatePayment: 'ยืนยันการชำระเงิน',
+        scanQrCode: 'สแกนคิวอาร์โค้ด',
         uploadSlip: 'อัปโหลดสลิป',
         confirmPayment: 'ยืนยันการชำระเงิน',
-        bankDetails: 'ธนาคารกสิกรไทย (KBank): 123-4-56789-0',
-        accountName: 'ชื่อบัญชี: ออโรร่า เบรด แอนด์ บัตเตอร์',
+        bankDetails: 'กรุงไทย',
+        accountName: '662 8 92720 2 - ศริวัฒน์ พวงอุไร',
         receipt: 'ใบเสร็จรับเงิน',
         estimatedTime: 'เวลารอโดยประมาณ',
         minutes: 'นาที',
@@ -191,7 +191,18 @@ export const translations = {
         darkMode: 'Dark Mode',
         confirmClearMsg: 'Are you sure you want to clear your entire cart?',
         yes: 'Yes',
-        no: 'No'
+        no: 'No',
+        simulatePayment: 'Confirm Payment',
+        scanQrCode: 'Scan QR Code',
+        uploadSlip: 'Upload Slip',
+        confirmPayment: 'Confirm Payment',
+        bankDetails: 'Krungthai Bank',
+        accountName: '662 8 92720 2 - Siriwat Puangurai',
+        receipt: 'Receipt',
+        estimatedTime: 'Estimated Time',
+        minutes: 'minutes',
+        processing: 'Processing...',
+        slipUploaded: 'Slip Uploaded'
     }
 };
 
