@@ -14,34 +14,49 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// Serverless-friendly MongoDB Connection
-let isConnected = false;
+// Serverless-friendly MongoDB Connection (Vercel Official Pattern)
+let cached = global.mongoose;
+if (!cached) {
+    cached = global.mongoose = { conn: null, promise: null };
+}
 
 const connectDB = async () => {
-    if (isConnected) {
-        return;
+    if (cached.conn) {
+        return cached.conn;
     }
-    if (mongoose.connection.readyState === 1) {
-        isConnected = true;
-        return;
+    
+    if (!cached.promise) {
+        const opts = {
+            bufferCommands: false, // Disable buffering so it fails fast instead of timing out
+            serverSelectionTimeoutMS: 5000,
+        };
+        
+        console.log('Connecting to MongoDB...');
+        cached.promise = mongoose.connect(process.env.MONGODB_URI, opts).then((mongoose) => {
+            console.log('✅ Connected to MongoDB Atlas');
+            return mongoose;
+        });
     }
     
     try {
-        await mongoose.connect(process.env.MONGODB_URI, {
-            serverSelectionTimeoutMS: 5000,
-            socketTimeoutMS: 45000,
-        });
-        isConnected = true;
-        console.log('✅ Connected to MongoDB Atlas');
-    } catch (err) {
-        console.error('❌ MongoDB connection error:', err);
+        cached.conn = await cached.promise;
+    } catch (e) {
+        cached.promise = null;
+        console.error('❌ MongoDB connection error:', e);
+        throw e;
     }
+    
+    return cached.conn;
 };
 
 // Middleware to ensure DB connection on every request
 app.use(async (req, res, next) => {
-    await connectDB();
-    next();
+    try {
+        await connectDB();
+        next();
+    } catch (err) {
+        res.status(500).json({ error: 'Database connection failed: ' + err.message });
+    }
 });
 
 // --- API Routes ---
